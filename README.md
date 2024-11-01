@@ -21,9 +21,9 @@ acme.sh --installcert -d <yourdomaincom> --cert-file ./volume/xray/cert/cert.crt
 ```
 
 #### Replace vars in configs 
-Replace "variables" __nginx.conf__ and __config.json__
-- __<yourdomaincom>__ is your domain name connected to VPS/VDS
-- __<client_uuid>__ generated UUID for client (you can generate it [here](https://www.uuidgenerator.net/))
+Replace "variables" in __./volume/nginx_fallback/nginx.conf__ and __./volume/xray/config.json__
+- __yourdomaincom__ is your domain name connected to VPS/VDS
+- __client_uuid__ is generated UUID for client (you can generate it [here](https://www.uuidgenerator.net/))
 
 #### Permissions
 ```bash
