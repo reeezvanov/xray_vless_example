@@ -12,7 +12,7 @@ services:
     volumes:
       - ./volume/nginx_fallback:/etc/nginx
       - /var/log/nginx_fallback:/var/log/nginx
-    command: ["nginx", "-c", "/etc/nginx/nginx_cert.conf"]
+    command: ["nginx", "-g", "daemon off;", "-c", "/etc/nginx/nginx_cert.conf"]
 
   nginx_fallback:
     container_name: nginx_fallback
@@ -27,7 +27,7 @@ services:
     volumes:
       - ./volume/nginx_fallback:/etc/nginx
       - /var/log/nginx_fallback:/var/log/nginx
-    command: ["nginx", "-c", "/etc/nginx/nginx_fallback.conf"]
+    command: ["nginx", "-g", "daemon off;", "-c", "/etc/nginx/nginx_fallback.conf"]
 
   xray:
     container_name: xray
