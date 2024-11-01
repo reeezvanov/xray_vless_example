@@ -1,13 +1,10 @@
 ## Overview
----
 This is an example from official [Project X setup guide](https://xtls.github.io/ru/document/level-0/) wrapped into the Docker Compose file.
 
 ## Requirements
----
 You need to have working and configured VPS with domain connected to it
 
 ## Instalation
----
 #### Generate TLS certificates
 ```bash
 mkdir -p ./volume/xray/cert
@@ -38,5 +35,4 @@ sudo chown user -R /var/log/xray/
 sudo docker-compose up --force-recreate
 ```
 ## XRAY Clients
----
 XRAY GUI client for your platform can be found [here](https://github.com/XTLS/Xray-core?tab=readme-ov-file#gui-clients)
