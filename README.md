@@ -11,9 +11,9 @@ mkdir -p ./volume/xray/cert
 wget -O -  https://get.acme.sh | sh
 . .bashrc
 acme.sh --upgrade --auto-upgrade
-acme.sh --issue --server letsencrypt --test -d <yourdomaincom> -w ./volume/nginx/www --keylength ec-256
+acme.sh --issue --server letsencrypt --test -d <yourdomaincom> -w ./volume/nginx_fallback/www --keylength ec-256
 acme.sh --set-default-ca --server letsencrypt
-acme.sh --issue -d <yourdomaincom> -w /volume/nginx/www --keylength ec-256 --force
+acme.sh --issue -d <yourdomaincom> -w ./volume/nginx_fallback/www --keylength ec-256 --force
 acme.sh --installcert -d <yourdomaincom> --cert-file ./volume/xray/cert/cert.crt --key-file ./volume/xray/cert/private.key --fullchain-file ./volume/xray/cert/fullchain.crt --ecc
 ```
 
