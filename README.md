@@ -13,7 +13,7 @@ Replace "variables" in __./volume/nginx_fallback/nginx_fallback.conf__, __./volu
 #### Create needed folders
 ```bash
 sudo mkdir -p /var/log/nginx_fallback/
-sudo mkdir -p $(whoami) -R /var/log/xray/
+sudo mkdir -p /var/log/xray/
 
 sudo chown $(whoami) -R /var/log/nginx_fallback/
 sudo chown $(whoami) -R /var/log/xray/
