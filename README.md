@@ -22,7 +22,7 @@ sudo chown $(whoami) -R /var/log/xray/
 #### Generate TLS certificates
 ```bash
 wget -O -  https://get.acme.sh | sh
-~/. ~/.bashrc
+. ~/.bashrc
 acme.sh --upgrade --auto-upgrade
 
 mkdir -p ./volume/xray/cert
