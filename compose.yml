@@ -1,6 +1,19 @@
 version: "3.9"
 
 services:
+  nginx_cert:
+    container_name: nginx_cert
+    image: nginx:1.27.1-alpine3.20-slim
+    restart: unless-stopped
+    environment:
+      TZ: Europe/Moscow
+    ports:
+      - 80:80
+    volumes:
+      - ./volume/nginx_fallback:/etc/nginx
+      - /var/log/nginx_fallback:/var/log/nginx
+    command: ["nginx", "-c", "/etc/nginx/nginx_cert.conf"]
+
   nginx_fallback:
     container_name: nginx_fallback
     image: nginx:1.27.1-alpine3.20-slim
@@ -14,6 +27,7 @@ services:
     volumes:
       - ./volume/nginx_fallback:/etc/nginx
       - /var/log/nginx_fallback:/var/log/nginx
+    command: ["nginx", "-c", "/etc/nginx/nginx_fallback.conf"]
 
   xray:
     container_name: xray
