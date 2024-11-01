@@ -1,0 +1,82 @@
+{
+    "log": {
+      "loglevel": "warning",
+      "access": "/var/log/xray/access.log",
+      "error": "/var/log/xray/error.log"
+    },
+    "dns": {
+      "servers": [
+        "https+local://1.1.1.1/dns-query",
+        "localhost"
+      ]
+    },
+    "routing": {
+      "domainStrategy": "IPIfNonMatch",
+      "rules": [
+        {
+          "type": "field",
+          "ip": [
+            "geoip:private"
+          ],
+          "outboundTag": "block"
+        },
+        {
+          "type": "field",
+          "ip": ["geoip:ru"],
+          "outboundTag": "block"
+        },
+        {
+          "type": "field",
+          "domain": [
+            "geosite:category-ads-all"
+          ],
+          "outboundTag": "block"
+        }
+      ]
+    },
+    "inbounds": [
+      {
+        "port": 443,
+        "protocol": "vless",
+        "settings": {
+          "clients": [
+            {
+              "id": "<client_uuid>",
+              "flow": "xtls-rprx-vision",
+              "level": 0,
+              "email": "client.email@example.com"
+            }
+          ],
+          "decryption": "none",
+          "fallbacks": [
+            {
+              "dest": "nginx_fallback:8080"
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "tcp",
+          "security": "tls",
+          "tlsSettings": {
+            "alpn": "http/1.1",
+            "certificates": [
+              {
+                "certificateFile": "/etc/xray/cert/fullchain.crt",
+                "keyFile": "/etc/xray/cert/private.key"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "outbounds": [
+      {
+        "tag": "direct",
+        "protocol": "freedom"
+      },
+      {
+        "tag": "block",
+        "protocol": "blackhole"
+      }
+    ]
+  }

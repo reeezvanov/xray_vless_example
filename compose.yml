@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  nginx_fallback:
+    container_name: nginx_fallback
+    image: nginx:1.27.1-alpine3.20-slim
+    restart: unless-stopped
+    environment:
+      TZ: Europe/Moscow
+    ports:
+      - 80:80
+    expose:
+      - 8080
+    volumes:
+      - ./volume/nginx_fallback:/etc/nginx
+      - /var/log/nginx_fallback:/var/log/nginx
+
+  xray:
+    container_name: xray
+    image: ghcr.io/xtls/xray-core:24.10.31
+    restart: unless-stopped
+    environment:
+      TZ: Europe/Moscow
+    ports:
+      - 443:443
+    volumes:
+      - ./volume/xray:/etc/xray
+      - /var/log/xray:/var/log/xray
