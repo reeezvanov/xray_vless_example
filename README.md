@@ -24,9 +24,9 @@ Replace "variables" in __./volume/nginx_fallback/nginx.conf__ and __./volume/xra
 
 #### Permissions
 ```bash
-sudo chown user ./volume/nginx/
+sudo chown user ./volume/nginx_fallback/
 sudo chown user ./volume/xray/
-sudo chown user -R /var/log/nginx/
+sudo chown user -R /var/log/nginx_fallback/
 sudo chown user -R /var/log/xray/
 ```
 
